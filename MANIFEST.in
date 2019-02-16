@@ -1,0 +1,4 @@
+include polytropos/schema.sql
+graft polytropos/static
+graft polytropos/templates
+global-exclude *.pyc
