@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+    {% block head %}
+	<meta charset="utf-8">
+	<title>{% block title %}{% endblock %}Polytropos</title>
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Timothy Salazar">
+    {% endblock %}
+</head>
+<body id="tc-info">
+<div class="page-wrapper" id="page-wrapper">
+    <section class="intro" id="tc-intro">
+        <header role="banner">
+			<!-- <h1 style="background:{{ url_for('static', filename='images/snow_pit.svg') }};width: 1000px;height: 162px;overflow: hidden;margin: 0;"></h1> -->
+			<img src="{{ url_for('static', filename='images/snow_pit.svg') }}" alt="TC Salazar" class="w3-image" width="1000" height="162" margin="0">
+		</header>
+		<div class="nav-bar" id="nav-bar">
+			<div class="w3-bar w3-dark-grey">
+				<a href="/" class="w3-bar-item w3-button w3-green"><i class="fa fa-home"></i></a>
+				<a href="#" class="w3-bar-item w3-button">About Me</a>
+				<a href="#" class="w3-bar-item w3-button">Projects</a>
+				<a href="#" class="w3-bar-item w3-button">Tutorials</a>
+				<a href="#" class="w3-bar-item w3-button">Archive</a>
+				<input type="text" placeholder="Search..">
+				<a>
+					<button id="openNav" class="w3-bar-item w3-button w3-green" onclick="w3_open()" style="float:right;position:absolute;right:0;top:159px;display:none;clip:rect(3px,50px,33px,0px);border-style:solid;border-width:1px;border-color:#444;">&#9776;</button>
+				</a>
+				<a>
+					<button id="closeNav" class="w3-bar-item w3-button" onclick="w3_close()" style="float:right;position:absolute;right:0;top:159px;color:#222;clip:rect(3px,50px,33px,0px);border-style:solid;border-width:1px;border-color:#444;">&#9776;</button>
+				</a>
+			</div>
+		</div>
+		<div class="sidebar" id="mySidebar">
+			<div class="contact-me" id="contact-me">
+				<h3 class="contact">Contact Me:</h3>
+				<div class="tc-image">
+					<img src="{{ url_for('static', filename='images/tc_salazar.svg') }}" alt="TC Salazar" class="w3-image" width="170" height="248">
+				</div>
+				<nav role="navigation">
+					<ul>
+						<li>
+							<a href="https://github.com/timothy-salazar/welcome" class="contact-entry">Github</a>
+						</li>
+						<li>
+							<a href="https://www.linkedin.com/in/timothy-salazar/" class="contact-entry">LinkedIn</a>
+						</li>
+						<li>
+							<a href="mailto:timothy.salazar@colorado.edu">timothy.salazar@colorado.edu</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+			<div class="project-selection" id="project-selection">
+				<h3 class="select">Recent Projects:</h3>
+				<nav role="navigation">
+					<ul>
+						<li>
+							<a href="/water-bugs" class="project-name">Water Bugs</a>
+							<a class="project-description">Identifying benthic macroinvertebrate images with a CNN</a>
+						</li>
+						<li>
+							<a href="/LED-control/" class="project-name">LED Light Project</a>
+							<a class="project-description">Using a Raspberry Pi to control LED light strips in a game room</a>
+						</li>
+						<li>
+							<a href="/RF-control/" class="project-name">RF Outlet Project</a>
+							<a class="project-description">Using a Raspberry Pi to interact with RF controlled electrical outlets</a>
+						</li>
+						<li>
+							<a href="/all-projects/" class="project-name">See all projects</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+		<script>
+		function w3_open() {
+		  document.getElementById("tc-supporting").style.marginRight = "270px";
+		  document.getElementById("mySidebar").style.display = "block";
+		  document.getElementById("closeNav").style.display = "inline-block";
+		  document.getElementById("openNav").style.display = 'none';
+		}
+		function w3_close() {
+		  document.getElementById("tc-supporting").style.marginRight = "30px";
+		  document.getElementById("mySidebar").style.display = "none";
+		  document.getElementById("openNav").style.display = "inline-block";
+		  document.getElementById("closeNav").style.display = 'none';
+		}
+		</script>
+    </section>
+	<div id="content">{% block content %}{% endblock %}</div>
+	<footer>
+    {% block footer %}
+    {% endblock %}
+    </footer>
+</div>
+</body>
+</html>

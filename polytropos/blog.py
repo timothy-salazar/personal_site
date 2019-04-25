@@ -2,7 +2,6 @@ from flask import (
     Blueprint, flash, g, redirect, render_template, request, url_for
 )
 from werkzeug.exceptions import abort
-
 from polytropos.auth import login_required
 from polytropos.db import get_db
 
@@ -87,7 +86,6 @@ def update(id):
             )
             db.commit()
             return redirect(url_for('blog.index'))
-
     return render_template('blog/update.html', post=post)
 
 @bp.route('/<int:id>/delete', methods=('POST',))

@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% block head %}
+{{ super() }}
+{% endblock %}
+{% block title %}Polytropos{% endblock %}
+{% block content %}
+    <div class="main supporting" id="tc-supporting" role="main">
+		<style>
+			.mySlides {display:none}
+			.w3-left, .w3-right, .w3-badge {cursor:pointer}
+			.w3-badge {height:13px;width:13px;padding:0}
+		</style>
+		<div class="video-presentation" id="video-presentation">
+			<div class="w3-content w3-display-container" style="height:315px;width:560px" onclick="stopCarosel()">
+				<iframe width="560" height="315" class="mySlides" id="cnn-presentation" src="https://www.youtube.com/embed/GeT8BvZv5j4?start=980" frameborder="0" allowfullscreen></iframe>
+				<img class="mySlides" src="{{ url_for('static', filename='images/raspi_lights.svg') }}" height="315" width="560">
+				<img class="mySlides" src="{{ url_for('static', filename='images/download.png') }}" height="315" width="350">
+				<div class="w3-center w3-container w3-section w3-large w3-text-white w3-display-bottommiddle" style="width:100%">
+				<div class="w3-left w3-hover-text-khaki" onclick="plusDivs(-1)" style="padding-left:50px;color:#ccc;">&#10094;</div>
+				<div class="w3-right w3-hover-text-khaki" onclick="plusDivs(1)" style="padding-right:50px;color:#ccc;">&#10095;</div>
+				<span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(1)"></span>
+				<span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(2)"></span>
+				<span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(3)"></span>
+				</div>
+			</div>
+		</div>
+		<script>
+		var slideIndex = 0;
+		var stopVar = 0;
+
+		function plusDivs(n) {
+		  showDivs(slideIndex += n);
+		}
+
+		function currentDiv(n) {
+		  showDivs(slideIndex = n);
+		}
+
+		function showDivs(n) {
+		  var i;
+		  var x = document.getElementsByClassName("mySlides");
+		  var dots = document.getElementsByClassName("demo");
+		  if (n > x.length) {slideIndex = 1}
+		  if (n < 1) {slideIndex = x.length}
+		  for (i = 0; i < x.length; i++) {
+		     x[i].style.display = "none";
+		  }
+		  for (i = 0; i < dots.length; i++) {
+		     dots[i].className = dots[i].className.replace(" w3-white", "");
+		  }
+		  x[slideIndex-1].style.display = "block";
+		  x[slideIndex-1].style.marginLeft = "auto";
+		  dots[slideIndex-1].className += " w3-white";
+		}
+
+		function stopCarosel(){
+			stopVar += 1;
+		}
+
+		var myIndex = 0;
+		carousel();
+
+		function carousel() {
+			if (stopVar == 0) {
+			    showDivs(slideIndex);
+			    plusDivs(1)
+			    var i;
+			    var x = document.getElementsByClassName("mySlides");
+			    for (i = 0; i < x.length; i++) {
+			       x[i].style.display = "none";
+			    }
+			    myIndex++;
+			    if (myIndex > x.length) {myIndex = 1}
+			    x[myIndex-1].style.display = "block";
+			    setTimeout(carousel, 6000); // Change image every 6 seconds
+			}
+
+		}
+		</script>
+		<div class="about-me" id="tc-about-me" role="article">
+            <h3>About Me</h3>
+            <p>I majored in geography at CU Boulder with a focus on hydrology and ecology. I became interested in data science after spending time as a snow hydrology intern for the Niwot Ridge <abbr title="Long Term Ecological Research Project">LTER</abbr>. The sheer amount of data that was produced - not only by interns making observations, but also by every sort of automated data logger - convinced me that I should make the move to data science. After teaching myself Python and R, I enrolled in the Galvanize Data Science Immersive where I gained familiarity with cutting edge techniques, and gained experience in solving real world problems through a series of case studies and my capstone project.</p>
+			<p>Following the Galvanize Data Science Immersive I was employed by Centosette, a company that does remote camera, lidar, and sonar imaging of pipes for customers in the wastewater industry. Their sophisticated algorithms integrate these data, extract information about corrosion, buildup, and sediment, and then produce easy to interpret deliverables for the customer. As data analyst the gross preponderance of my job consisted of labeling data, but I also wrote code that had to intermesh with an extensive pre-existing code base, performed troubleshooting, did work to to streamline the existing data pipeline, and helped build some limited machine learning infrastructure.</p>
+        </div>
+	</div>
+{% endblock %}
